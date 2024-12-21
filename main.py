@@ -1,32 +1,67 @@
-
 from PyQt5 import QtWidgets,QtCore
+
 
 
 class Ui_Mainwindow(object):
 
+    def UIcomponents(self):
+
+        MainWindow.resize(800, 600)
+        c = QtWidgets.QWidget(MainWindow)
+        c.setObjectName("c")
+        c.resize(800, 600)
+
+
+
     def setup(self):
-        MainWindow.resize(800,600)
-        self.c=QtWidgets.QWidget(MainWindow)
-        self.c.setObjectName("c")
-        self.c.resize(800,600)
 
-        self.gamer=QtWidgets.QPushButton(self.c)
-        self.gamer.setGeometry(QtCore.QRect(10,10,100,50))
 
-        self.start = QtWidgets.QPushButton(self.c)
-        self.start.setGeometry(QtCore.QRect(500, 100, 100, 50))
+        gamer=QtWidgets.QPushButton()
+        gamer.setGeometry(QtCore.QRect(10,10,100,50))
+        gamer.settext("gamer:")
+        gamer.clicked.connect(self.gamer)
 
-        self.nastr = QtWidgets.QPushButton(self.c)
-        self.nastr.setGeometry(QtCore.QRect(500, 200, 100, 50))
+        start = QtWidgets.QPushButton()
+        start.setGeometry(QtCore.QRect(500, 100, 100, 50))
+        start.setText("start!")
+        start.clicked.connect(self.start)
 
-        self.exit = QtWidgets.QPushButton(self.c)
-        self.exit.setGeometry(QtCore.QRect(500, 300, 100, 50))
+
+        save = QtWidgets.QPushButton()
+        save.setGeometry(QtCore.QRect(500, 200, 100, 50))
+        save.setText("save")
+        save.clicked.connect(self.savegame)
+
+
+        exit = QtWidgets.QPushButton()
+        exit.setGeometry(QtCore.QRect(500, 300, 100, 50))
+        exit.setText("exit")
+        exit.clicked.connect(self.exit)
+
+
+    def startgame(self):
+        print("start!")
+
+    def gamer(self):
+        print("gamer")
+
+    def savegame(self):
+        print("save!")
+
+    def exit(self):
+        print("exit!")
+
+
 
 
 if __name__ =="__main__":
     import sys
-    app=QtWidgets.QApplication(sys.argv)
-    MainWindow=QtWidgets.QMainWindow()
+    app = QtWidgets.QApplication(sys.argv)
+
+    MainWindow = QtWidgets.QMainWindow()
+
     Ui_Mainwindow.setup(MainWindow)
+
     MainWindow.show()
+
     sys.exit(app.exec_())
