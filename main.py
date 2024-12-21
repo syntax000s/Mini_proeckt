@@ -1,43 +1,47 @@
-from PyQt5 import QtWidgets,QtCore
+from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import QMainWindow
+
+
+import sys
 
 
 
-class Ui_Mainwindow(object):
+
+class Mainwindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+
+        self.setWindowTitle("myGame")
+
+        self.setGeometry(100,100,600, 450)
+
+        self.UIcomponents()
+
+        self.show()
 
     def UIcomponents(self):
 
-        MainWindow.resize(800, 600)
-        c = QtWidgets.QWidget(MainWindow)
-        c.setObjectName("c")
-        c.resize(800, 600)
-
-
-
-    def setup(self):
-
-
-        gamer=QtWidgets.QPushButton()
-        gamer.setGeometry(QtCore.QRect(10,10,100,50))
-        gamer.settext("gamer:")
+        gamer = QtWidgets.QPushButton("a", self)
+        gamer.setGeometry(10,10,100,50)
+        gamer.setText("gamer:")
         gamer.clicked.connect(self.gamer)
 
-        start = QtWidgets.QPushButton()
-        start.setGeometry(QtCore.QRect(500, 100, 100, 50))
+        start =QtWidgets.QPushButton("b",self)
+        start.setGeometry(500, 100, 100, 50)
         start.setText("start!")
-        start.clicked.connect(self.start)
+        start.clicked.connect(self.startgame)
 
 
-        save = QtWidgets.QPushButton()
-        save.setGeometry(QtCore.QRect(500, 200, 100, 50))
+        save = QtWidgets.QPushButton("c", self)
+        save.setGeometry(500, 200, 100, 50)
         save.setText("save")
         save.clicked.connect(self.savegame)
 
 
-        exit = QtWidgets.QPushButton()
-        exit.setGeometry(QtCore.QRect(500, 300, 100, 50))
-        exit.setText("exit")
-        exit.clicked.connect(self.exit)
-
+        off =QtWidgets.QPushButton("d", self)
+        off.setGeometry(500, 300, 100, 50)
+        off.setText("exit")
+        off.clicked.connect(self.off)
 
     def startgame(self):
         print("start!")
@@ -48,20 +52,13 @@ class Ui_Mainwindow(object):
     def savegame(self):
         print("save!")
 
-    def exit(self):
+    def off(self):
         print("exit!")
 
 
 
+app = QtWidgets.QApplication(sys.argv)
 
-if __name__ =="__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
+window=Mainwindow()
 
-    MainWindow = QtWidgets.QMainWindow()
-
-    Ui_Mainwindow.setup(MainWindow)
-
-    MainWindow.show()
-
-    sys.exit(app.exec_())
+sys.exit(app.exec_())
