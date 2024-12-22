@@ -11,9 +11,7 @@ class Mainwindow(QMainWindow):
         super().__init__()
 
         self.setWindowTitle("myGame")
-
         self.setGeometry(100,100,600, 450)
-        #self.dialog=SnakeGame()
         self.UIcomponents()
 
     def UIcomponents(self):
