@@ -1,60 +1,10 @@
+
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5.QtCore import *
-from PyQt5.QtGui import QPainter, QColor
+from PyQt5.QtGui import QPainter, QColor, QKeyEvent
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel
 import random
-
-
-class SnakeGame(QWidget):
-    def __init__(self):
-        super().__init__()
-        self.square_size = 20
-        self.snake = [(10, 10)]
-        self.direction = 'RIGHT'
-
-        self.food = self.generate_food()
-        self.initUI()
-
-    def initUI(self):
-        self.setGeometry(100,100,500, 500)
-        self.setWindowTitle('Snake Game')
-
-    def paintEvent(self, event):
-        qp = QPainter()
-        qp.begin(self)
-        self.draw_snake(qp)
-        self.draw_food(qp)
-        qp.end()
-
-    def draw_snake(self, qp):
-        for x, y in self.snake:
-            qp.fillRect(x * self.square_size, y * self.square_size, self.square_size, self.square_size,
-                        QColor(0, 255, 0))
-
-    def draw_food(self, qp):
-        x, y = self.food
-        qp.fillRect(x * self.square_size, y * self.square_size, self.square_size, self.square_size, QColor(255, 0, 0))
-
-    def generate_food(self):
-        x = random.randint(0, 24)
-        y = random.randint(0, 24)
-        return (x, y)
-
-    def keyPressEvent(self, e):
-        if Qt.Key() == Qt.Key.Key_Up:
-            print("up")
-            self.direction = 'UP'
-        if Qt.Key().Key_Down == Qt.Key().Key_Down:
-            print("down")
-            self.direction = 'DOWN'
-        if Qt.Key.Key_Left == Qt.Key.Key_Left:
-            print("Left")
-            self.direction = 'LEFT'
-        if Qt.Key.Key_Right == Qt.Key.Key_Right:
-            print("Right")
-            self.direction = 'RIGHT'
-        self.e.accept()
 
 class Mainwindow(QMainWindow):
     def __init__(self):
@@ -63,7 +13,7 @@ class Mainwindow(QMainWindow):
         self.setWindowTitle("myGame")
 
         self.setGeometry(100,100,600, 450)
-        self.dialog=SnakeGame()
+        #self.dialog=SnakeGame()
         self.UIcomponents()
 
     def UIcomponents(self):
@@ -92,7 +42,7 @@ class Mainwindow(QMainWindow):
 
     def startgame(self):
         print("start!")
-        self.dialog.show()
+        import snakegame
 
     def gamer(self):
         print("gamer")
@@ -103,7 +53,6 @@ class Mainwindow(QMainWindow):
     def off(self):
         print("exit!")
         self.close()
-
 
 
 
